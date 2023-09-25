@@ -1,5 +1,6 @@
 Question
-Produce a list of the total number of hours booked per facility, remembering that a slot lasts half an hour. The output table should consist of the facility id, name, and hours booked, sorted by facility id. Try formatting the hours to two decimal places.
+Produce a list of the total number of hours booked per facility, remembering that a slot lasts half an hour. The output table should consist of the facility id, name, and hours booked, sorted by facility id.
+Try formatting the hours to two decimal places.
 
 Answer
 SELECT f.facid, f.name, CAST(SUM(b.slots) / 2.0 AS DECIMAL(10, 2)) AS total_hours
