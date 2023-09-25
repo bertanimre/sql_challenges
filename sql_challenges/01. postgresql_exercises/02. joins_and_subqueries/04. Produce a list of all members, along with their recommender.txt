@@ -1,0 +1,7 @@
+Question
+How can you output a list of all members, including the individual who recommended them (if any)? Ensure that results are ordered by (surname, firstname).
+
+Answer
+SELECT m.firstname, m.surname, r.firstname AS ref_firstname, r.surname AS ref_surname
+FROM cd.members AS m LEFT JOIN cd.members AS r ON m.recommendedby = r.memid
+ORDER BY m.surname, m.firstname;

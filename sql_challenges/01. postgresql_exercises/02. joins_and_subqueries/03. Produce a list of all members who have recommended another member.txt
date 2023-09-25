@@ -1,0 +1,9 @@
+Question
+How can you output a list of all members who have recommended another member? Ensure that there are no duplicates in the list, and that results are ordered by (surname, firstname).
+
+Answer
+SELECT DISTINCT firstname, surname
+FROM cd.members
+WHERE memid IN (SELECT recommendedby
+                FROM cd.members)
+ORDER BY surname, firstname;

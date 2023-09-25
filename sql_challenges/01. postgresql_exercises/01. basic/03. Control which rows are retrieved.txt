@@ -1,0 +1,7 @@
+Question
+How can you produce a list of facilities that charge a fee to members?
+
+Answer
+SELECT *
+FROM cd.facilities
+WHERE membercost > 0;

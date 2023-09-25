@@ -1,0 +1,13 @@
+Question
+How can you produce a list of bookings on the day of 2012-09-14 which will cost the member (or guest) more than $30? Remember that guests have different costs to members (the listed costs are per half-hour 'slot'), and the guest user is always ID 0. Include in your output the name of the facility, the name of the member formatted as a single column, and the cost. Order by descending cost, and do not use any subqueries.
+
+Answer
+SELECT CONCAT(m.firstname, ' ', m.surname) AS member, f.name AS facility, 
+       CASE WHEN m.memid = 0 THEN f.guestcost * b.slots
+            ELSE f.membercost * b.slots
+       END AS cost
+FROM cd.members AS m JOIN cd.bookings AS b ON m.memid = b.memid
+     JOIN cd.facilities AS f ON f.facid = b.facid
+WHERE b.starttime BETWEEN '2012-09-14' AND '2012-09-15' 
+      AND ((m.memid = 0 AND f.guestcost * b.slots > 30) OR (m.memid != 0 AND f.membercost * b.slots > 30))
+ORDER BY cost DESC;

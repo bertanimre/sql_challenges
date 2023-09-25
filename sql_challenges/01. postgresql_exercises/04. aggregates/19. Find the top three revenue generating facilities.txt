@@ -1,0 +1,13 @@
+Question
+Produce a list of the top three revenue generating facilities (including ties). Output facility name and rank, sorted by rank and facility name.
+
+Answer
+SELECT name, rank
+FROM(SELECT name, RANK() OVER(ORDER BY profit DESC) AS rank
+     FROM(SELECT f.name, SUM(CASE WHEN b.memid = 0 THEN b.slots * f.guestcost
+                                  ELSE b.slots * f.membercost
+                             END) AS profit
+          FROM cd.bookings AS b JOIN cd.facilities AS f ON b.facid = f.facid
+          GROUP BY f.facid, f.name) AS profits) AS ranked
+WHERE rank <= 3
+ORDER BY rank; 

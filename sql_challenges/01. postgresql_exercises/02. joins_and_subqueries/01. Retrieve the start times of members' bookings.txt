@@ -1,0 +1,7 @@
+Question
+How can you produce a list of the start times for bookings by members named 'David Farrell'?
+
+Answer
+SELECT starttime
+FROM cd.members AS m JOIN cd.bookings AS b ON m.memid = b.memid
+WHERE m.firstname = 'David' AND m.surname = 'Farrell';

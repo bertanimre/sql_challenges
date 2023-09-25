@@ -1,0 +1,6 @@
+Question
+Output the names of all members, formatted as 'Surname, Firstname'
+
+Answer
+SELECT CONCAT(surname, ', ', firstname)
+FROM cd.members;
